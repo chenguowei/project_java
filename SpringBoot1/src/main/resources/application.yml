@@ -1,0 +1,16 @@
+server:
+  port: 8090
+
+taco:
+  orders:
+    pageSize: 15
+
+#mybatis:
+#  mapper-locations: classpath*:mapper/*Mapper.xml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kgc?characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
