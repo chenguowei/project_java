@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-boot-resilience4j
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      circuitBreakerDemo:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        permitted-number-of-calls-in-half-open-state: 3
+        minimum-number-of-calls: 5
+        wait-duration-in-open-state: 5s

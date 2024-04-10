@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    dev:
+      jdbcUrl: jdbc:mysql://localhost:3306/test_database1?characterEncoding=utf8&serverTimezone=UTC
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    local:
+      jdbcUrl: jdbc:mysql://localhost:3306/kgc?characterEncoding=utf8&serverTimezone=UTC
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
