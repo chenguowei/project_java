@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: spring-boot-jpa
+
+  # ?????
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/kgc?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowMultiQueries=true
+    username: root
+    password: root
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          auto: none
+logging:
+  level:
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: "TRACE"
+
+
