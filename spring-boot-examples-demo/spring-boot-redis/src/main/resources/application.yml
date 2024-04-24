@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring-boot-redis
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: ningzaichun
+      database: 0
+      lettuce:
+        pool:
+          enabled: true
+          max-idle: 16
+          max-active: 32
+          min-idle: 8
+
+
