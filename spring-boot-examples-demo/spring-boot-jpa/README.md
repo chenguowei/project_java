@@ -202,3 +202,80 @@ public class UserController {
 
 这里使用字段注入的方式 @Autowired, 实际中最好使用 setXXX()注入方式。
 
+
+
+### 编写SQL
+
+```java
+ @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "delete from t_user where age = ?1")
+    int deleteTUser(String age);
+```
+
+
+
+### 事务管理
+
+```java
+ @Transactional(rollbackFor = Exception.class)
+    public void register(String age) throws Exception {
+        TUser user = new TUser();
+        user.setAge(age);
+        user.setUsername("chenguowei");
+
+        tUserRepository.save(user);
+        if (Objects.equals(age, "10")) {
+            throw new Exception("测试事务");
+        }
+
+        TOrder tOrder = new TOrder();
+        tOrder.setName("chenguowei");
+        tOrder.setNumber(age);
+
+        tOrderRepository.save(tOrder);
+    }
+```
+
+- ​	多个方法嵌套调用，如果都有 @Transactional 注解，则产生事务传递，默认 Propagation.REQUIRED。
+- ​	事务默认只对 RutimeException 回滚，而非 Exception回滚。
+- ​	如果要对 checked Exceptions 进行回滚，则需要 @Transactional(rollbackFor = Exception.class)
+
+
+
+### 联表查询
+
+新建一个联表的结构体
+
+```java
+package org.example.springbootjpa.dao;
+
+public interface UserOrderDao {
+    String getName();
+    String getNumber();
+    String getUsername();
+    String getAge();
+}
+```
+
+自定义联表查询语句
+
+```java
+@Query(nativeQuery = true, value = "select username, age, number, name " +
+            "from t_user left join t_order ON t_user.age = t_order.number")
+    public List<UserOrderDao> findViewInfo();
+```
+
+
+
+### 测试
+curl -XGET 'http://localhost:8080/user/getUsersByAge?age=10'
+
+curl -XPOST 'http://localhost:8080/user/addUser'
+
+curl -XPOST 'http://localhost:8080/user/deleteUserSql?age=10'
+
+curl -XPOST 'http://localhost:8080/user/transaction?age=10'
+
+curl -XGET 'http://localhost:8080/user/findViewInfo'
+
