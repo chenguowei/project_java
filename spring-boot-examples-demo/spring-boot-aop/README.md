@@ -14,7 +14,7 @@
 
 
 
-![这里写图片描述](/Users/fanjiaqi/workspaces/project_java/spring-boot-examples-demo/spring-boot-aop/src/main/resources/static/70.png)
+![这里写图片描述](src/main/resources/static/70.png)
 
 ### Advice 的类型
 
