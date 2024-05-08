@@ -1,5 +1,3 @@
-# Getting Started
-
 ## SpringBoot AOP的实践
 
 ### AOP相关的概念：
@@ -19,13 +17,33 @@
 ### Advice 的类型
 
 - before advice, 在 join point 前被执行的 advice. 虽然 before advice 是在 join point 前被执行, 但是它并不能够阻止 join point 的执行, 除非发生了异常(即我们在 before advice 代码中, 不能人为地决定是否继续执行 join point 中的代码)
-
 - after return advice, 在一个 join point 正常返回后执行的 advice
-
 - after throwing advice, 当一个 join point 抛出异常后执行的 advice
 - after(final) advice, 无论一个 join point 是正常退出还是发生了异常, 都会被执行的 advice.
 - around advice, 在 join point 前和 joint point 退出后都执行的 advice. 这个是最常用的 advice.
   introduction，introduction可以为原有的对象增加新的属性和方法。
+
+同一个aspect，不同advice的执行顺序：
+
+①没有异常情况下的执行顺序：
+
+- around before advice
+
+- before advice
+- target method 执行
+- around after advice
+- after advice
+- afterReturning
+
+②有异常情况下的执行顺序：
+
+- around before advice
+- before advice
+- target method 执行
+- around after advice
+- after advice
+- afterThrowing:异常发生
+- java.lang.RuntimeException: 异常发生
 
 
 
@@ -160,6 +178,11 @@ public class AnnotationAopController {
 ```
 
 使用以存在的注解，比如 GetMapping 也是这样使用，只不过 PointCut里指定GetMapping的注解包路径。
+
+
+
+
+
 
 
 

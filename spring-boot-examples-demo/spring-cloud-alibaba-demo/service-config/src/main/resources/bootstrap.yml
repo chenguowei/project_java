@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: service-config
+
+  # 环境配置
+  profiles:
+    active: dev
+
+
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848 # 配置中心地址
+        namespace: dev    # 命名空间默认为 PUBLIC
+        group: DEFAULT_GROUP # 配置默认分组： DEFAULT_GROUP
+        file-extension: yml   # 配置文件格式（参数有 yml, json, properties）
+        extension-configs:
+          - data-id: redis-config.yml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: switch-config.yml
+            group: DEFAULT_GROUP
+            refresh: true
+#  config:
