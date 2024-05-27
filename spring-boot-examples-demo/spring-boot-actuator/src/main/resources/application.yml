@@ -1,6 +1,10 @@
 spring:
   application:
     name: spring-boot-actuator
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
 management:
   endpoint:
     health:
@@ -18,4 +22,3 @@ management:
     git:
       enabled: true
       mode: full
-
